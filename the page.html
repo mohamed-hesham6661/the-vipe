@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <link rel="stylesheet" href="the design.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>العد التنازلي لإجازة الصيف</title>
+</head>
+<body>
+
+  <div class="container">
+    <h1>☀️ عد تنازلي للصيف</h1>
+    <p>باقي على الإجازة:</p>
+    <div class="timer" id="timer">جاري التحميل...</div>
+  </div>
+
+  <script>
+    const targetDate = new Date("June 15, 2027 00:00:00").getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        document.getElementById("timer").innerHTML = "🎉 بدأت الإجازة!";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML = 
+        `${days} يوم - ${hours} ساعة - ${minutes} دقيقة - ${seconds} ثانية`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+
+</body>
+</html>
